@@ -1,6 +1,7 @@
 package co.com.employees.management.repository;
 
 import co.com.employees.management.model.ComputerInventory;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,4 +14,8 @@ public interface ComputerInventoryRepository extends CrudRepository<ComputerInve
 
     @Query("SELECT c.serialNumber FROM ComputerInventory c WHERE c.model = ?1 AND c.computerState = 1")
     List<String> getComputersSerialNumber(String model);
+
+    @Modifying
+    @Query("UPDATE ComputerInventory c SET c.computerState = :state WHERE c.id = :id")
+    void updateComputerState(int id, int state);
 }

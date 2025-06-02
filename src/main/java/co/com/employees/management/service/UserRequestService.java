@@ -14,7 +14,7 @@ public class UserRequestService {
 
     public UserRequest saveUserRequest(UserRequest userRequest) {
         Request request = new Request();
-        request.setState(StateEnum.APROBADO.getIdState());
+        request.setState(StateEnum.PENDIENTE.getIdState());
 
         userRequest.setRequest(request);
 
