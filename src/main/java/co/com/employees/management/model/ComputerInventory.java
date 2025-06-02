@@ -19,4 +19,7 @@ public class ComputerInventory {
 
     @Column(name = "serial_number")
     private String serialNumber;
+
+    @Column(name = "id_computer_state")
+    private int computerState;
 }
