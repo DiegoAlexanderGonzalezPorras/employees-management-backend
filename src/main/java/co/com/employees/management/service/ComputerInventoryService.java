@@ -20,7 +20,7 @@ public class ComputerInventoryService {
         return computerInventoryRepository.getComputersModels();
     }
 
-    public List<String> getComputersSerial(String model) {
+    public List<ComputerInventory> getComputersSerial(String model) {
         return computerInventoryRepository.getComputersSerialNumber(model);
     }
 }

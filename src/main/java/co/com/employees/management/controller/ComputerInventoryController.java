@@ -25,7 +25,7 @@ public class ComputerInventoryController {
     }
 
     @GetMapping("/serial-number")
-    public ResponseEntity<List<String>> getComputersSerialNumber(@RequestParam String model){
+    public ResponseEntity<List<ComputerInventory>> getComputersSerialNumber(@RequestParam String model){
         return ResponseEntity.ok(computerInventoryService.getComputersSerial(model));
     }
 }
