@@ -39,10 +39,6 @@ public class AccessRequestService {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode access = mapper.readValue(record.getAccess(), JsonNode.class);
-
-                //JsonFactory factory = new JsonFactory();
-                //JsonParser jp = factory.createJsonParser(record.getAccess());
-                //JsonNode access = jp.readValueAsTree();
                 Iterator<String> fieldNames = access.fieldNames();
 
                 List<String> accessList = new ArrayList<>();
