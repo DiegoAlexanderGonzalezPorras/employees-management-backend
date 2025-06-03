@@ -1,7 +1,7 @@
 package co.com.employees.management.controller;
 
 import co.com.employees.management.model.ComputerInventory;
-import co.com.employees.management.service.ComputerInventoryServiceTest;
+import co.com.employees.management.service.ComputerInventoryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class ComputerInventoryControllerTest {
     private ComputerInventoryController computerInventoryController;
 
     @Mock
-    private ComputerInventoryServiceTest computerInventoryService;
+    private ComputerInventoryService computerInventoryService;
 
     @BeforeEach
     public void setUp() {
