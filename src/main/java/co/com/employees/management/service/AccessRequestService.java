@@ -5,10 +5,18 @@ import co.com.employees.management.enums.StateEnum;
 import co.com.employees.management.model.AccessRequest;
 import co.com.employees.management.model.Request;
 import co.com.employees.management.repository.AccessRequestRepository;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +33,36 @@ public class AccessRequestService {
     }
 
     public List<AccessRecord> getAccessRecord() {
-        return accessRequestRepository.getAccessRecord();
+        List<AccessRecord> accessRecord = accessRequestRepository.getAccessRecord();
+
+        accessRecord = accessRecord.stream().map((AccessRecord record) -> {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode access = mapper.readValue(record.getAccess(), JsonNode.class);
+
+                //JsonFactory factory = new JsonFactory();
+                //JsonParser jp = factory.createJsonParser(record.getAccess());
+                //JsonNode access = jp.readValueAsTree();
+                Iterator<String> fieldNames = access.fieldNames();
+
+                List<String> accessList = new ArrayList<>();
+                while (fieldNames.hasNext()) {
+                    String key = fieldNames.next();
+                    boolean value = access.get(key).asBoolean();
+
+                    if (value){
+                        accessList.add(key);
+                    }
+                }
+
+                record.setAccess(String.join(",", accessList));
+
+                return record;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(Collectors.toList());
+
+        return accessRecord;
     }
 }
