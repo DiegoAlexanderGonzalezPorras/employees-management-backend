@@ -18,9 +18,9 @@ public class AccessRequest {
     @JoinColumn(name = "id_request", referencedColumnName = "id")
     private Request request;
 
-    @Column
+    @Column(name = "name")
     private String username;
 
     @Column
-    private String access;
+    private String access;  
 }
