@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class AccessRecord {
+    private int id;
     private String name;
     private String access;
     private String state;
