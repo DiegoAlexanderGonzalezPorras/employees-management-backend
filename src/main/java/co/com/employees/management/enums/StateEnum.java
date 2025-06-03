@@ -2,6 +2,10 @@ package co.com.employees.management.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.util.StringUtils;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 @Getter
 @RequiredArgsConstructor
@@ -13,4 +17,12 @@ public enum StateEnum {
 
     private final String nameState;
     private final int idState;
+
+    public int getIdStateNameState(String nameState) {
+        StateEnum state = Arrays.stream(StateEnum.values())
+                .filter(item -> item.getNameState().equals(nameState))
+                .findFirst().orElse(StateEnum.PENDIENTE);
+
+        return state.getIdState();
+    }
 }
