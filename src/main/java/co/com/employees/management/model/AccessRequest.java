@@ -22,5 +22,5 @@ public class AccessRequest {
     private String username;
 
     @Column
-    private String access;  
+    private String access;
 }
