@@ -16,4 +16,11 @@ public interface AccessRequestRepository extends CrudRepository<AccessRequest, I
             "   LEFT JOIN State s ON r.state = s.id" +
             "   ORDER BY r.date DESC")
     List<AccessRecord> getAccessRecord();
+
+    @Query("SELECT r.id, r.date, a.username, a.access, s.name state FROM AccessRequest a" +
+            "   JOIN Request r ON r.id = a.request.id" +
+            "   LEFT JOIN State s ON r.state = s.id" +
+            "   WHERE s.id = :idState" +
+            "   ORDER BY r.date DESC")
+    List<AccessRecord> getAccessRecordByState(int idState);
 }

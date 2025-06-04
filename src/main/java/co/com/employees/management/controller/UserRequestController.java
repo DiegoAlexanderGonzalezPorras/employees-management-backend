@@ -26,8 +26,8 @@ public class UserRequestController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserRecord>> getUserRecord(){
-        return ResponseEntity.ok(userRequestService.getUserRecord());
+    public ResponseEntity<List<UserRecord>> getUserRecord(@RequestParam String state){
+        return ResponseEntity.ok(userRequestService.getUserRecord(state));
     }
 
     @GetMapping("/id")

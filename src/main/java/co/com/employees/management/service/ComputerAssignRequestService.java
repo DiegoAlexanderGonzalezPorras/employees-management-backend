@@ -30,7 +30,11 @@ public class ComputerAssignRequestService {
         return computerAssignRequestRepository.save(computerAssignRequest);
     }
 
-    public List<ComputerAssignRecord> getComputerAssignRecord() {
-        return computerAssignRequestRepository.getComputerAssignRecord();
+    public List<ComputerAssignRecord> getComputerAssignRecord(String state) {
+        if (state.isEmpty()) {
+            return computerAssignRequestRepository.getComputerAssignRecord();
+        } else {
+            return computerAssignRequestRepository.getComputerAssignRecordByState(StateEnum.APROBADO.getIdStateNameState(state));
+        }
     }
 }

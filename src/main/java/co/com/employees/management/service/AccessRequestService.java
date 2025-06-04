@@ -39,8 +39,14 @@ public class AccessRequestService {
         return accessRequestRepository.save(accessRequest);
     }
 
-    public List<AccessRecord> getAccessRecord() {
-        List<AccessRecord> accessRecord = accessRequestRepository.getAccessRecord();
+    public List<AccessRecord> getAccessRecord(String state) {
+        List<AccessRecord> accessRecord;
+
+        if (state.isEmpty()) {
+            accessRecord = accessRequestRepository.getAccessRecord();
+        }else{
+            accessRecord = accessRequestRepository.getAccessRecordByState(StateEnum.APROBADO.getIdStateNameState(state));
+        }
 
         accessRecord = accessRecord.stream().map((AccessRecord record) -> {
             try {

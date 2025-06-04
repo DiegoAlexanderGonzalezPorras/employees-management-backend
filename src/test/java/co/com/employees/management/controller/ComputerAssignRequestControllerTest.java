@@ -49,9 +49,9 @@ public class ComputerAssignRequestControllerTest {
         List<ComputerAssignRecord> ComputerAssignRecordList = new ArrayList<>();
         ComputerAssignRecordList.add(accessRecordRq);
 
-        when(computerAssignRequestService.getComputerAssignRecord()).thenReturn(ComputerAssignRecordList);
+        when(computerAssignRequestService.getComputerAssignRecord(anyString())).thenReturn(ComputerAssignRecordList);
 
-        ResponseEntity<List<ComputerAssignRecord>> accessRecord = accessRequestController.getComputerAssignRecord();
+        ResponseEntity<List<ComputerAssignRecord>> accessRecord = accessRequestController.getComputerAssignRecord("");
 
         Assertions.assertEquals(1, accessRecord.getBody().get(0).getId());
     }

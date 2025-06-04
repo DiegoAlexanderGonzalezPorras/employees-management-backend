@@ -33,8 +33,12 @@ public class UserRequestService {
         return userRequestRepository.save(userRequest);
     }
 
-    public List<UserRecord> getUserRecord(){
-        return userRequestRepository.getUserRecord();
+    public List<UserRecord> getUserRecord(String state){
+        if (state.isEmpty()) {
+            return userRequestRepository.getUserRecord();
+        }else {
+            return userRequestRepository.getUserRecordByState(StateEnum.APROBADO.getIdStateNameState(state));
+        }
     }
 
     public UserRequest getUser(int id_request){

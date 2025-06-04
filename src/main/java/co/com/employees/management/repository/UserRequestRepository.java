@@ -16,4 +16,11 @@ public interface UserRequestRepository extends CrudRepository<UserRequest, Integ
             "   LEFT JOIN State s on r.state = s.id" +
             "   ORDER BY r.date DESC")
     List<UserRecord> getUserRecord();
+
+    @Query("SELECT r.id, r.date, u.identityNumber, u.name, u.area, u.rol, s.name state FROM UserRequest u" +
+            "   JOIN Request r ON r.id = u.request.id" +
+            "   LEFT JOIN State s on r.state = s.id" +
+            "   WHERE s.id = :idState" +
+            "   ORDER BY r.date DESC")
+    List<UserRecord> getUserRecordByState(int idState);
 }

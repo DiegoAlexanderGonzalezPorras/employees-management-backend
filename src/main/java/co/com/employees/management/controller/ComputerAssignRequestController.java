@@ -21,7 +21,7 @@ public class ComputerAssignRequestController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ComputerAssignRecord>> getComputerAssignRecord(){
-        return ResponseEntity.ok(computerAssignRequestService.getComputerAssignRecord());
+    public ResponseEntity<List<ComputerAssignRecord>> getComputerAssignRecord(@RequestParam String state){
+        return ResponseEntity.ok(computerAssignRequestService.getComputerAssignRecord(state));
     }
 }

@@ -49,9 +49,9 @@ public class AccessRequestControllerTest {
         List<AccessRecord> accessRecordList = new ArrayList<>();
         accessRecordList.add(accessRecordRq);
 
-        when(accessRequestService.getAccessRecord()).thenReturn(accessRecordList);
+        when(accessRequestService.getAccessRecord(anyString())).thenReturn(accessRecordList);
 
-        ResponseEntity<List<AccessRecord>> accessRecord = accessRequestController.getAccessRecord();
+        ResponseEntity<List<AccessRecord>> accessRecord = accessRequestController.getAccessRecord("");
 
         Assertions.assertEquals(1, accessRecord.getBody().get(0).getId());
     }

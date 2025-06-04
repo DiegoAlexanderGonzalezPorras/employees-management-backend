@@ -52,9 +52,9 @@ public class UserRequestControllerTest {
         List<UserRecord> userRecordList = new ArrayList<>();
         userRecordList.add(userRecord);
 
-        when(userRequestService.getUserRecord()).thenReturn(userRecordList);
+        when(userRequestService.getUserRecord(anyString())).thenReturn(userRecordList);
 
-        ResponseEntity<List<UserRecord>> accessRecord = userRequestController.getUserRecord();
+        ResponseEntity<List<UserRecord>> accessRecord = userRequestController.getUserRecord("");
 
         Assertions.assertEquals(1, accessRecord.getBody().get(0).getId());
     }

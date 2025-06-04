@@ -15,4 +15,12 @@ public interface ComputerAssignRequestRepository extends CrudRepository<Computer
             "    LEFT JOIN State s ON r.state = s.id" +
             "   ORDER BY r.date DESC")
     List<ComputerAssignRecord> getComputerAssignRecord();
+
+    @Query("SELECT r.id, r.date, c.name, ci.model, ci.serialNumber, s.name state FROM ComputerAssignRequest c" +
+            "    JOIN Request r ON r.id = c.request.id" +
+            "    LEFT JOIN ComputerInventory ci ON ci.id = c.idComputer" +
+            "    LEFT JOIN State s ON r.state = s.id" +
+            "   WHERE s.id = :idState" +
+            "   ORDER BY r.date DESC")
+    List<ComputerAssignRecord> getComputerAssignRecordByState(int idState);
 }

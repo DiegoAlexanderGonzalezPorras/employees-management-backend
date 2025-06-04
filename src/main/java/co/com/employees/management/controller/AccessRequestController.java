@@ -26,8 +26,8 @@ public class AccessRequestController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<AccessRecord>> getAccessRecord(){
-        return ResponseEntity.ok(accessRequestService.getAccessRecord());
+    public ResponseEntity<List<AccessRecord>> getAccessRecord(@RequestParam String state){
+        return ResponseEntity.ok(accessRequestService.getAccessRecord(state));
     }
 
     @GetMapping("/id")
