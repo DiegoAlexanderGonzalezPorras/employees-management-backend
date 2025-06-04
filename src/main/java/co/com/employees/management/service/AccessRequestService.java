@@ -4,9 +4,8 @@ import co.com.employees.management.dto.AccessRecord;
 import co.com.employees.management.enums.StateEnum;
 import co.com.employees.management.model.AccessRequest;
 import co.com.employees.management.model.Request;
+import co.com.employees.management.model.UserRequest;
 import co.com.employees.management.repository.AccessRequestRepository;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +27,14 @@ public class AccessRequestService {
         request.setState(StateEnum.PENDIENTE.getIdState());
 
         accessRequest.setRequest(request);
+
+        return accessRequestRepository.save(accessRequest);
+    }
+
+    public AccessRequest updateAccessRequest(AccessRequest accessRequest) {
+        AccessRequest originalRequest = accessRequestRepository.findById(accessRequest.getId()).get();
+
+        accessRequest.setRequest(originalRequest.getRequest());
 
         return accessRequestRepository.save(accessRequest);
     }
@@ -60,5 +67,9 @@ public class AccessRequestService {
         }).collect(Collectors.toList());
 
         return accessRecord;
+    }
+
+    public AccessRequest getAccessRequestById(int id_request){
+        return accessRequestRepository.findAllByRequestId(id_request);
     }
 }

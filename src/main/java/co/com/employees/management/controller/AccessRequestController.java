@@ -20,8 +20,18 @@ public class AccessRequestController {
         return ResponseEntity.ok(accessRequestService.saveAccessRequest(accessRequest));
     }
 
+    @PutMapping("")
+    public ResponseEntity<AccessRequest> updateAccessRequest(@RequestBody AccessRequest userRequest){
+        return ResponseEntity.ok(accessRequestService.updateAccessRequest(userRequest));
+    }
+
     @GetMapping("")
     public ResponseEntity<List<AccessRecord>> getAccessRecord(){
         return ResponseEntity.ok(accessRequestService.getAccessRecord());
+    }
+
+    @GetMapping("/id")
+    public ResponseEntity<AccessRequest> getAccessRequestById(@RequestParam int id_request){
+        return ResponseEntity.ok(accessRequestService.getAccessRequestById(id_request));
     }
 }
