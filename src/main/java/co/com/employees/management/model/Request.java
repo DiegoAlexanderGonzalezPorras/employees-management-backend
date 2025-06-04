@@ -17,7 +17,7 @@ public class Request {
     private int id;
 
     @Column(insertable = false, updatable = false)
-    private Date date;
+    private String date;
 
     @Column(name = "id_state")
     private int state;

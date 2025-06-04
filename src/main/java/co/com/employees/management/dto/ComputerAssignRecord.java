@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class ComputerAssignRecord {
     private int id;
+    private String date;
     private String name;
     private String model;
     private String serialNumber;

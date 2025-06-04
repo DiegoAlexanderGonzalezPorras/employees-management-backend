@@ -11,8 +11,9 @@ public interface UserRequestRepository extends CrudRepository<UserRequest, Integ
 
     UserRequest findAllByRequestId(int id_request);
 
-    @Query("SELECT r.id, u.identityNumber, u.name, u.area, u.rol, s.name state FROM UserRequest u" +
+    @Query("SELECT r.id, r.date, u.identityNumber, u.name, u.area, u.rol, s.name state FROM UserRequest u" +
             "   JOIN Request r ON r.id = u.request.id" +
-            "   LEFT JOIN State s on r.state = s.id")
+            "   LEFT JOIN State s on r.state = s.id" +
+            "   ORDER BY r.date DESC")
     List<UserRecord> getUserRecord();
 }

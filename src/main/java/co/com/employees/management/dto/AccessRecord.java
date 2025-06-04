@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class AccessRecord {
     private int id;
+    private String date;
     private String name;
     private String access;
     private String state;

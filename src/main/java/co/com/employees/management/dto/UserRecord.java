@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class UserRecord {
     private int id;
+    private String date;
     private String identityNumber;
     private String name;
     private String area;

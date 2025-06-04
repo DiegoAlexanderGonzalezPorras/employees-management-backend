@@ -11,8 +11,9 @@ public interface AccessRequestRepository extends CrudRepository<AccessRequest, I
 
     AccessRequest findAllByRequestId(int id_request);
 
-    @Query("SELECT r.id, a.username, a.access, s.name state FROM AccessRequest a" +
+    @Query("SELECT r.id, r.date, a.username, a.access, s.name state FROM AccessRequest a" +
             "   JOIN Request r ON r.id = a.request.id" +
-            "   LEFT JOIN State s ON r.state = s.id")
+            "   LEFT JOIN State s ON r.state = s.id" +
+            "   ORDER BY r.date DESC")
     List<AccessRecord> getAccessRecord();
 }
