@@ -20,8 +20,18 @@ public class UserRequestController {
         return ResponseEntity.ok(userRequestService.saveUserRequest(userRequest));
     }
 
+    @PutMapping("")
+    public ResponseEntity<UserRequest> updateUserRequest(@RequestBody UserRequest userRequest){
+        return ResponseEntity.ok(userRequestService.updateUserRequest(userRequest));
+    }
+
     @GetMapping("")
     public ResponseEntity<List<UserRecord>> getUserRecord(){
         return ResponseEntity.ok(userRequestService.getUserRecord());
+    }
+
+    @GetMapping("/id")
+    public ResponseEntity<UserRequest> getUser(@RequestParam int id_request){
+        return ResponseEntity.ok(userRequestService.getUser(id_request));
     }
 }
